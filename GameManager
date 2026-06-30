@@ -1,0 +1,35 @@
+using TMPro;
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    [SerializeField] GameObject GameOver;
+    [SerializeField] CoinProgram CoinProgram;
+    [SerializeField] private TextMeshProUGUI CountText;
+    [SerializeField] int Count = 200;
+    void Start()
+    {
+        CountText.text = "MEDARU : 200";
+        GameOver.SetActive(false);
+    }
+
+    public void OnMainasCount()
+    {
+        Count--;
+        CountText.text = "MEDARU : "+Count;
+    }
+    public void OnPlassCount()
+    {
+        Count++;
+        CountText.text = "MEDARU : " + Count;
+    }
+    void Update()
+    {
+        
+    }
+
+    public void OnGameOver()
+    {
+        GameOver.SetActive(true);
+    }
+}
