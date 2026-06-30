@@ -1,0 +1,28 @@
+using UnityEngine;
+
+public class Slaid : MonoBehaviour
+{
+    public float baseZ = 2.39f;
+    public float speed = 2.0f;
+    public float amplitude = 0.549f;
+
+    void Update()
+    {
+        float zPosition = CalculateSinePosition();
+
+        transform.position = new Vector3(
+            transform.position.x,
+            transform.position.y,
+            zPosition
+            );
+    }
+
+    private float CalculateSinePosition()
+    {
+        float angle = Time.time * speed;
+        float sineValue = Mathf.Sin(angle);
+        float zPosition = (sineValue * amplitude)+baseZ;
+
+        return zPosition;
+    }
+}
