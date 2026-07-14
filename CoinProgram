@@ -1,0 +1,48 @@
+using UnityEngine;
+
+public class CoinProgram : MonoBehaviour
+{
+    //Coinが残りの数の管理。
+    [SerializeField] int Coin;
+    [SerializeField] GameManager gamemanager;
+
+    //coinがコイン本体をUnity側でInspecterでドラッグして複製ができるようにするため。
+    [SerializeField] GameObject coin;
+
+    //SpownSetをここで定義してエラーを出さないようにするため。
+    private Vector3 SpownSet;
+    
+    void Start()
+    {
+        //ここでメダルを10個Instantiateを使って生成する。
+        for(int i =0;i<10;i++)
+        {
+            Instantiate(coin, SpownSet, Quaternion.identity);
+            //ここでSpownSetに定義を設定する。
+            SpownSet = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        }
+    }
+
+    public void OnDestroy()
+    {
+        Coin++;
+        gamemanager.OnPlassCount();
+    }
+
+    void Update()
+    {
+        //スペースキーを押したら、コインを生成する。
+        if(Input.GetKeyDown(KeyCode.Space)&& Coin > 0)
+        {
+            Instantiate(coin, SpownSet, Quaternion.identity);
+            //コインの所持枚数を1枚減らす。
+            Coin--;
+            gamemanager.OnMainasCount();
+        }
+        else if(Coin <= 0)
+        {
+            Debug.Log("コインがありません");
+            gamemanager.OnGameOver();
+        }
+    }
+}
