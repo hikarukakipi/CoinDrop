@@ -1,0 +1,15 @@
+using UnityEngine;
+
+public class GoalGate : MonoBehaviour
+{
+    [SerializeField] CoinProgram CoinProgram;
+
+    public void OnTriggerEnter(Collider  other)
+    {
+        if (other.gameObject.tag == "Medaru")
+        {
+            CoinProgram.OnDestroy();
+            Debug.Log("コインを取得しました。");
+        }
+    }
+}
