@@ -1,0 +1,14 @@
+using UnityEngine;
+
+public class Destroy : MonoBehaviour
+{
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "GoalGate")
+        {
+            Destroy(this.gameObject);
+
+        }
+    }
+}
